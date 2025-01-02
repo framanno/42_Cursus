@@ -12,20 +12,20 @@
 
 #include "libft.h"
 
-int	row_i(const char *s, char d)
+int	count_words(const char *s, char d)
 {
 	int	i;
-	int	in_word;
+	int	is_word;
 
 	i = 0;
-	in_word = 0;
+	is_word = 0;
 	while (*s)
 	{
 		if (*s == d)
-			in_word = 0;
-		else if (!in_word)
+			is_word = 0;
+		else if (!is_word)
 		{
-			in_word = 1;
+			is_word = 1;
 			i++;
 		}
 		s++;
@@ -33,9 +33,9 @@ int	row_i(const char *s, char d)
 	return (i);
 }
 
-void	col_create(const char *s, char d, char **m)
+void	copy_words(const char *s, char d, char **m)
 {
-	int			dim;
+	int			len;
 	int			i;
 	const char	*start;
 
@@ -49,27 +49,27 @@ void	col_create(const char *s, char d, char **m)
 		start = s;
 		while (*s != d && *s != '\0')
 			s++;
-		dim = s - start;
-		m[i] = (char *)malloc((dim + 1) * sizeof(char));
+		len = s - start;
+		m[i] = (char *)malloc((len + 1) * sizeof(char));
 		if (m[i] == NULL)
 			return ;
-		ft_strlcpy(m[i], start, dim + 1);
+		ft_strlcpy(m[i], start, len + 1);
 		i++;
 	}
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**mat;
-	int		row;
+	char	**result;
+	int		wrd;
 
 	if (s == NULL)
 		return (NULL);
-	row = row_i(s, c);
-	mat = (char **)malloc((row + 1) * sizeof(char *));
-	if (mat == NULL)
+	wrd = count_words(s, c);
+	result = (char **)malloc((wrd + 1) * sizeof(char *));
+	if (result == NULL)
 		return (NULL);
-	mat[row] = NULL;
-	col_create(s, c, mat);
-	return (mat);
+	result[wrd] = NULL;
+	copy_words(s, c, result);
+	return (result);
 }
