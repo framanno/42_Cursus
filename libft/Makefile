@@ -3,23 +3,23 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_memchr.c ft_memcmp.c ft
 	ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c \
 	ft_putendl_fd.c ft_putnbr_fd.c ft_striteri.c
 
-LIB = libft.a
+NAME = libft.a
 
-all: $(LIB)
+all: $(NAME)
 
 .c.o: 
 	cc -Wall -Wextra -Werror -c $< -o ${<:.c=.o}
 
 OBJS = ${SRC:.c=.o}
 
-$(LIB):	${OBJS}
-			ar rcs ${LIB} ${OBJS}
+$(NAME):	${OBJS}
+			ar rcs ${NAME} ${OBJS}
 
 clean:
 			rm -f ${OBJS}
 			
 fclean:		clean
-			rm -f ${LIB}
+			rm -f ${NAME}
 
 re:			fclean all
 
