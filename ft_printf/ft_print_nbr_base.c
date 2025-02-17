@@ -20,7 +20,7 @@ void	ft_print_nbr_base(unsigned long nbr, char *base, int *count)
 	if (nbr == 0)
 	{
 		ft_print_char(base[0], count);
-		return (-1);
+		return ;
 	}
 	if (nbr >= len)
 	{

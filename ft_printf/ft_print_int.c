@@ -20,7 +20,7 @@ void	ft_print_int(int nbr, int *count)
 	if (nbr == -2147483648)
 	{
 		ft_print_str("-2147483648", count);
-		return (-1);
+		return ;
 	}
 	if (nbr < 0)
 	{
